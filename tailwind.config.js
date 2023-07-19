@@ -13,12 +13,16 @@ module.exports = {
         sky: colors.sky,
         cyan: colors.cyan,
         primary: colors.fuchsia[300],
+        error: colors.rose[400],
       },
       width: {
         432: '27rem',
       },
       borderWidth: {
         0.5: '0.5px',
+      },
+      screens: {
+        mobile: '367px',
       },
     },
   },

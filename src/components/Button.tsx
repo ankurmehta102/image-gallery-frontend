@@ -1,5 +1,5 @@
 interface ButtonPropsTypes {
-  onClick: any;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: string;
   type: string;
 }

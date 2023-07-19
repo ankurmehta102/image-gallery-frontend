@@ -1,38 +1,21 @@
-import Input from '../components/Input';
-import Button from '../components/Button';
+import { SignUpFieldsData } from '../utils/constant';
+import { Form } from '../components/Form';
+import { FormHeader } from '../components/FormHeader';
+import { SignUpField } from '../utils/types';
 
 function Signup() {
-  const onSubmit = () => {
-    console.log('submit clicked');
+  const onSubmit = (data: SignUpField) => {
+    console.log('Submit sign up form---->', data);
   };
   return (
-    <div className="bg-black w-screen h-screen flex justify-center items-center">
-      <div className="bg-black w-96 flex flex-col pb-5 border rounded-md border-primary">
-        <div
-          id="header"
-          className="text-white flex justify-center items-center border-b-0.5 border-primary bg-primary rounded-t"
-        >
-          <h1 className="text-2xl py-7 text-black">Create a new account</h1>
-        </div>
-        <div
-          id="content"
-          className="flex flex-col items-center text-white pt-5 "
-        >
-          <div className="flex w-11/12 justify-end">
-            <div className="flex justify-start">
-              <Input type="text" placeholder="Firstname" />
-            </div>
-            <div className="flex justify-end">
-              <Input type="text" placeholder="Lastname" />
-            </div>
-          </div>
-          <Input type="text" placeholder="Username" />
-          <Input type="password" placeholder="Password" />
-          <Input type="password" placeholder="Confirm Password" />
-          <Button type="submit" onClick={onSubmit}>
-            Submit
-          </Button>
-        </div>
+    <div className="flex h-screen w-screen items-center justify-center bg-black">
+      <div className="flex w-96 flex-col rounded-md border border-primary bg-black pb-5">
+        <FormHeader title="Create a new account " />
+        <Form
+          isSignUp={true}
+          inputFieldsData={SignUpFieldsData}
+          onSubmit={onSubmit}
+        />
       </div>
     </div>
   );
