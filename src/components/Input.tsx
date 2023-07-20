@@ -26,7 +26,7 @@ const Input = React.forwardRef(
             errorMessage ? 'border-error' : 'border-primary'
           }`}
         />
-        <div className="h-3 w-11/12 mobile:h-1">
+        <div className={`h-3 w-11/12 mobile:h-1`}>
           {errorMessage && <p className="text-xs text-error">{errorMessage}</p>}
         </div>
       </div>
