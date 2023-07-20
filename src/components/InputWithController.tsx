@@ -12,13 +12,13 @@ type proptypes = {
   align?: string;
 };
 
-export function InputWithController({
+export const InputWithController = ({
   inputData,
   control,
   errors,
   rules,
   align,
-}: proptypes) {
+}: proptypes) => {
   return (
     <Controller
       name={inputData.name}
@@ -39,4 +39,4 @@ export function InputWithController({
       )}
     />
   );
-}
+};
