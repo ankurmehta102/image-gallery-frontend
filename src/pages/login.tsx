@@ -1,13 +1,37 @@
-import { LogInFieldsData, LogInFormDefaultValue } from '../utils/constant';
+import {
+  LogInFieldsData,
+  LogInFormDefaultValue,
+  STORAGE_KEYS,
+} from '../utils/constant';
 import { Form } from '../components/Form';
 import { FormHeader } from '../components/FormHeader';
 import { LogInField } from '../utils/types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormFooter from '../components/FormFooter';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store';
+import { logIn } from '../utils/http-common';
+import { setLoading } from '../slices/generalSlice';
+import { storeValue } from '../utils/helpers';
 
 export const Login = () => {
-  const onSubmit = (data: LogInField) => {
+  const { isLoading } = useSelector((state: RootState) => state.general);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onSubmit = async (data: LogInField) => {
     console.log('login sign up form---->', data);
+    try {
+      dispatch(setLoading(true));
+      const response = await logIn(data);
+      const { usersDetails, tokens } = response.data;
+      storeValue(STORAGE_KEYS.USER, JSON.stringify(usersDetails));
+      storeValue(STORAGE_KEYS.TOKENS, JSON.stringify(tokens));
+      navigate('/');
+    } catch (error) {
+      console.log('onSubmit[Err]-->', error);
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-black">

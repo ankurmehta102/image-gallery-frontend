@@ -28,3 +28,8 @@ export const SignUpFormDefaultValue = {
   password: '',
   confirmPassword: '',
 };
+
+export const enum STORAGE_KEYS {
+  USER = 'USER',
+  TOKENS = 'TOKENS',
+}
