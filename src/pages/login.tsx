@@ -13,6 +13,7 @@ import { RootState } from '../store';
 import { logIn } from '../utils/http-common';
 import { setLoading } from '../slices/generalSlice';
 import { storeValue } from '../utils/helpers';
+import Loader from '../components/Loader';
 
 export const Login = () => {
   const { isLoading } = useSelector((state: RootState) => state.general);
@@ -35,6 +36,7 @@ export const Login = () => {
   };
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-black">
+      {isLoading && <Loader />}
       <div className="m-0.5 flex w-96 max-w-full flex-col rounded-md border border-primary bg-black pb-5">
         <FormHeader title="Log in to your account" />
         <Form

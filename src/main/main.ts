@@ -76,6 +76,7 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
+    autoHideMenuBar: true,
     webPreferences: {
       webSecurity: false, //cors error
       preload: app.isPackaged
