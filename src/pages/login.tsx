@@ -15,13 +15,16 @@ import { setErrorMsg, setLoading } from '../slices/generalSlice';
 import { storeValue } from '../utils/helpers';
 import Loader from '../components/Loader';
 import ErrorMessage from '../components/ErrorMessage';
+import { useResetErrorMsg } from '../utils/reduxHelper';
 
 export const Login = () => {
   const { isLoading, errMsg } = useSelector(
     (state: RootState) => state.general
   );
   const dispatch = useDispatch();
+  const resetErrorMsg = useResetErrorMsg();
   const navigate = useNavigate();
+
   const onSubmit = async (data: LogInField) => {
     console.log('login sign up form---->', data);
     try {
@@ -45,7 +48,7 @@ export const Login = () => {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-black">
       {isLoading && <Loader />}
-      <div className="w-96 max-w-full">
+      <div className="w-96 max-w-full animate-fade">
         <div className="m-0.5 flex max-w-full flex-col rounded-md border border-primary bg-black pb-5">
           <FormHeader title="Log in to your account" />
           <Form
@@ -58,11 +61,19 @@ export const Login = () => {
         {errMsg && <ErrorMessage>{errMsg}</ErrorMessage>}
         <FormFooter>
           {' '}
-          <Link to={'/signup'} className="text-primary underline">
+          <Link
+            to={'/signup'}
+            onClick={resetErrorMsg}
+            className="text-primary underline"
+          >
             Forgot password
           </Link>{' '}
           or Create a{' '}
-          <Link to={'/signup'} className="text-primary underline">
+          <Link
+            to={'/signup'}
+            onClick={resetErrorMsg}
+            className="text-primary underline"
+          >
             new
           </Link>{' '}
           account.

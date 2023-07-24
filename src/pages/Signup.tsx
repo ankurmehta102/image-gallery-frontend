@@ -10,13 +10,16 @@ import { RootState } from '../store';
 import { setErrorMsg, setLoading } from '../slices/generalSlice';
 import Loader from '../components/Loader';
 import ErrorMessage from '../components/ErrorMessage';
+import { useResetErrorMsg } from '../utils/reduxHelper';
 
 const Signup = () => {
   const { isLoading, errMsg } = useSelector(
     (state: RootState) => state.general
   );
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const resetErrorMsg = useResetErrorMsg();
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data: SignUpField) => {
     const { confirmPassword, ...payload } = data;
@@ -39,7 +42,7 @@ const Signup = () => {
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-black">
       {isLoading && <Loader />}
-      <div className="w-96 max-w-full">
+      <div className="w-96 max-w-full animate-fade">
         <div className="flex max-w-full flex-col rounded-md border border-primary bg-black pb-5">
           <FormHeader title="Create a new account" />
           <Form
@@ -52,7 +55,11 @@ const Signup = () => {
         </div>
         {errMsg && <ErrorMessage>{errMsg}</ErrorMessage>}
         <FormFooter>
-          <Link to={'/login'} className="text-primary underline">
+          <Link
+            to={'/login'}
+            onClick={resetErrorMsg}
+            className="text-primary underline"
+          >
             Already have an account?
           </Link>
         </FormFooter>

@@ -24,6 +24,21 @@ module.exports = {
       screens: {
         mobile: '367px',
       },
+      keyframes: {
+        fade: {
+          '0%': {
+            transform: 'translateY(5%)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0%)',
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        fade: 'fade 0.5s ',
+      },
     },
   },
   variants: {
