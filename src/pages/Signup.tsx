@@ -47,7 +47,6 @@ const Signup = () => {
         <Form
           isSignUp={true}
           inputFieldsData={SignUpFieldsData}
-          // @ts-ignore
           onSubmit={onSubmit}
           defaultValues={SignUpFormDefaultValue}
         />
