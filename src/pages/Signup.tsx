@@ -1,16 +1,17 @@
 import { SignUpFieldsData, SignUpFormDefaultValue } from '../utils/constant';
-import { Form } from '../components/Form';
-import { FormHeader } from '../components/FormHeader';
+import { Form } from '../components/form/Form';
+import { FormHeader } from '../components/form/FormHeader';
 import { SignUpField } from '../utils/types';
 import { Link, useNavigate } from 'react-router-dom';
-import FormFooter from '../components/FormFooter';
+import FormFooter from '../components/form/FormFooter';
 import { signUp } from '../utils/http-common';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { setErrorMsg, setLoading } from '../slices/generalSlice';
-import Loader from '../components/Loader';
 import ErrorMessage from '../components/ErrorMessage';
 import { useResetErrorMsg } from '../utils/reduxHelper';
+import FormPageLayout from '../components/form/FormPageLayout';
+import FormContainer from '../components/form/FormContainer';
 
 const Signup = () => {
   const { isLoading, errMsg } = useSelector(
@@ -40,31 +41,28 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center bg-black">
-      {isLoading && <Loader />}
-      <div className="w-96 max-w-full animate-fade">
-        <div className="flex max-w-full flex-col rounded-md border border-primary bg-black pb-5">
-          <FormHeader title="Create a new account" />
-          <Form
-            isSignUp={true}
-            inputFieldsData={SignUpFieldsData}
-            // @ts-ignore
-            onSubmit={onSubmit}
-            defaultValues={SignUpFormDefaultValue}
-          />
-        </div>
-        {errMsg && <ErrorMessage>{errMsg}</ErrorMessage>}
-        <FormFooter>
-          <Link
-            to={'/login'}
-            onClick={resetErrorMsg}
-            className="text-primary underline"
-          >
-            Already have an account?
-          </Link>
-        </FormFooter>
-      </div>
-    </div>
+    <FormPageLayout isLoading={isLoading}>
+      <FormContainer>
+        <FormHeader title="Create a new account" />
+        <Form
+          isSignUp={true}
+          inputFieldsData={SignUpFieldsData}
+          // @ts-ignore
+          onSubmit={onSubmit}
+          defaultValues={SignUpFormDefaultValue}
+        />
+      </FormContainer>
+      {errMsg && <ErrorMessage>{errMsg}</ErrorMessage>}
+      <FormFooter>
+        <Link
+          to={'/login'}
+          onClick={resetErrorMsg}
+          className="text-primary underline"
+        >
+          Already have an account?
+        </Link>
+      </FormFooter>
+    </FormPageLayout>
   );
 };
 

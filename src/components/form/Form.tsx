@@ -1,18 +1,13 @@
-import Button from '../components/Button';
+import Button from '../Button';
 import { useForm } from 'react-hook-form';
-import {
-  InputFieldDataType,
-  LogInField,
-  SignUpField,
-  logInFieldKeys,
-} from '../utils/types';
-import { InputWithController } from '../components/InputWithController';
-import { SignUpFieldsData } from '../utils/constant';
+import { InputFieldDataType, LogInField, SignUpField } from '../../utils/types';
+import { InputWithController } from '../InputWithController';
+import { SignUpFieldsData } from '../../utils/constant';
 
 type FormProps = {
   isSignUp: boolean;
   inputFieldsData: InputFieldDataType;
-  onSubmit: (data: LogInField | SignUpField) => void;
+  onSubmit: (data: LogInField | SignUpField) => Promise<void>;
   defaultValues: SignUpField | LogInField;
 };
 
