@@ -76,7 +76,8 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
-    autoHideMenuBar: true,
+    // autoHideMenuBar: true,
+    frame: false,
     webPreferences: {
       webSecurity: false, //cors error
       preload: app.isPackaged
@@ -100,6 +101,22 @@ const createWindow = async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  ipcMain.on('minimize-window', () => {
+    mainWindow?.minimize();
+  });
+
+  ipcMain.on('maximize-window', () => {
+    if (mainWindow?.isMaximized()) {
+      mainWindow?.restore();
+    } else {
+      mainWindow?.maximize();
+    }
+  });
+
+  ipcMain.on('close-window', () => {
+    mainWindow?.close();
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);

@@ -9,6 +9,9 @@ const electronHandler = {
     sendMessage(channel: Channels, ...args: unknown[]) {
       ipcRenderer.send(channel, ...args);
     },
+    send(message: string) {
+      ipcRenderer.send(message);
+    },
     on(channel: Channels, func: (...args: unknown[]) => void) {
       const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
         func(...args);
@@ -24,6 +27,7 @@ const electronHandler = {
   },
   env: {
     REACT_APP_BASE_URL: process.env.REACT_APP_BASE_URL,
+    REACT_APP_PROFILE_ADDRESS: process.env.REACT_APP_PROFILE_ADDRESS,
   },
 };
 

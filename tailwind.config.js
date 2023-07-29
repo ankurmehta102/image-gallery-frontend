@@ -14,6 +14,9 @@ module.exports = {
         cyan: colors.cyan,
         primary: colors.fuchsia[300],
         error: colors.rose[400],
+        navbar: colors.neutral[800],
+        sidebar: colors.neutral[950],
+        'custom-slate': colors.slate[300],
       },
       width: {
         432: '27rem',
@@ -23,6 +26,7 @@ module.exports = {
       },
       screens: {
         mobile: '367px',
+        navbar: '622px',
       },
       keyframes: {
         fade: {
@@ -38,6 +42,7 @@ module.exports = {
       },
       animation: {
         fade: 'fade 0.5s ',
+        'spin-slow': 'spin 5s linear infinite',
       },
     },
   },

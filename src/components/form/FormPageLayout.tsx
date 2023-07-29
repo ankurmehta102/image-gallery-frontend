@@ -1,4 +1,4 @@
-import Loader from '../Loader';
+import Loader from '../helpers/Loader';
 import { ReactNode } from 'react';
 
 const FormPageLayout = ({

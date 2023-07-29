@@ -1,7 +1,7 @@
-import Button from '../Button';
+import Button from '../helpers/Button';
 import { SubmitHandler, useForm, DefaultValues } from 'react-hook-form';
 import { InputFieldDataType, LogInField, SignUpField } from '../../utils/types';
-import { InputWithController } from '../InputWithController';
+import { InputWithController } from '../helpers/InputWithController';
 import { SignUpFieldsData } from '../../utils/constant';
 
 type SignUpOrLoginFields = SignUpField | LogInField;

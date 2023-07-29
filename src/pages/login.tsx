@@ -13,7 +13,7 @@ import { RootState } from '../store';
 import { logIn } from '../utils/http-common';
 import { setErrorMsg, setLoading } from '../slices/generalSlice';
 import { storeValue } from '../utils/helpers';
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/helpers/ErrorMessage';
 import { useResetErrorMsg } from '../utils/reduxHelper';
 import FormPageLayout from '../components/form/FormPageLayout';
 import FormContainer from '../components/form/FormContainer';

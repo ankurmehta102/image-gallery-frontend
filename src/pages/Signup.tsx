@@ -8,7 +8,7 @@ import { signUp } from '../utils/http-common';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { setErrorMsg, setLoading } from '../slices/generalSlice';
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/helpers/ErrorMessage';
 import { useResetErrorMsg } from '../utils/reduxHelper';
 import FormPageLayout from '../components/form/FormPageLayout';
 import FormContainer from '../components/form/FormContainer';
