@@ -6,17 +6,17 @@ import { PiGearLight } from 'react-icons/pi';
 
 const Sidebar = () => {
   const SidebarLinksData = [
-    { isLink: true, icon: <GoHome /> },
-    { isLink: true, icon: <MdOutlinePhotoAlbum /> },
-    { isLink: true, icon: <BsCloudUpload /> },
-    { isLink: true, icon: <PiGearLight /> },
+    { isLink: true, icon: <GoHome />, to: '/' },
+    { isLink: true, icon: <MdOutlinePhotoAlbum />, to: '/albums' },
+    { isLink: true, icon: <BsCloudUpload />, to: '/uploads' },
+    { isLink: true, icon: <PiGearLight />, to: '/settings' },
   ];
   return (
     <div className="flex h-full w-11 items-center justify-center bg-sidebar">
       <ul className="flex w-10/12  flex-col items-center justify-center">
         {SidebarLinksData.map((item, index) => {
           return (
-            <ListItem isLinks={item.isLink} key={index}>
+            <ListItem isLinks={item.isLink} key={index} to={item.to}>
               {item.icon}
             </ListItem>
           );

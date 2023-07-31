@@ -5,9 +5,10 @@ type ListItemPropTypes = {
   children: any;
   isLinks: boolean;
   onClick?: () => void;
+  to?: string;
 };
 
-const ListItem = ({ children, isLinks, onClick }: ListItemPropTypes) => {
+const ListItem = ({ children, isLinks, onClick, to }: ListItemPropTypes) => {
   return (
     <li
       onClick={onClick}
@@ -22,7 +23,7 @@ const ListItem = ({ children, isLinks, onClick }: ListItemPropTypes) => {
       } flex items-center justify-center text-custom-slate duration-150 ease-in`}
     >
       {isLinks ? (
-        <Link to="" className="text-2xl">
+        <Link to={to || ''} className="text-2xl">
           {children}
         </Link>
       ) : (
