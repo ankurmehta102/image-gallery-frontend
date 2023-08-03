@@ -33,3 +33,16 @@ export const enum STORAGE_KEYS {
   USER = 'USER',
   TOKENS = 'TOKENS',
 }
+
+export const enum SIZES {
+  X_SMALL = 'X_SMALL',
+  SMALL = 'SMALL',
+  MEDIUM = 'MEDIUM',
+  LARGE = 'LARGE',
+}
+
+export const enum WEIGHTS {
+  LITE = 'LITE',
+  MEDIUM = 'MEDIUM',
+  HEAVY = 'HEAVY',
+}

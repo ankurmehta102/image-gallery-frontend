@@ -20,7 +20,7 @@ const MainLayout = () => {
       <div className="h-12 w-full">
         <Navbar></Navbar>
       </div>
-      <div className="flex h-screen">
+      <div className="flex h-screen overflow-hidden">
         <Sidebar></Sidebar>
         {/* {children} */}
         <Outlet />
