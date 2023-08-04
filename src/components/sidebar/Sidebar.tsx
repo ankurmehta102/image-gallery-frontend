@@ -12,7 +12,7 @@ const Sidebar = () => {
     { isLink: true, icon: <PiGearLight />, to: '/settings' },
   ];
   return (
-    <div className="flex h-full w-11 items-center justify-center bg-sidebar">
+    <div className="flex h-full w-11 items-center justify-center border-r border-line bg-sidebar">
       <ul className="flex w-10/12  flex-col items-center justify-center">
         {SidebarLinksData.map((item, index) => {
           return (

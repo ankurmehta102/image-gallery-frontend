@@ -23,6 +23,8 @@ const textWeightFinder = (weight = '') => {
       return '';
     case WEIGHTS.MEDIUM:
       return 'font-bold';
+    case WEIGHTS.HEAVY:
+      return 'font-extrabold';
     default:
       return '';
   }

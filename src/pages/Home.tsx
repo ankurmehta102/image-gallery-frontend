@@ -92,32 +92,30 @@ const Home = () => {
     },
   ];
   const colorsArray = [
-    'bg-card-purple',
-    'bg-card-gray',
-    'bg-card-red',
-    'bg-card-blue',
+    'bg-card-one',
+    'bg-card-two',
+    'bg-card-three',
+    'bg-card-four',
   ];
-  function getRandomColor() {
-    const randomIndex = Math.floor(Math.random() * colorsArray.length);
-    console.log();
-    return colorsArray[randomIndex];
+  function getColor(index: number) {
+    return colorsArray[index % colorsArray.length];
   }
 
   return (
     <div
       id="home-main"
-      className="flex h-full w-full flex-col items-center justify-center"
+      className="flex h-full w-full  items-center justify-center bg-sidebar"
     >
-      <div className="grid h-5/6 grid-cols-five gap-y-4 overflow-y-scroll bg-sidebar  p-5 max-[1090px]:grid-cols-four max-[910px]:grid-cols-three max-[715px]:grid-cols-two  max-[505px]:grid-cols-one ">
-        {ImagesData.map((image) => {
+      <div className="grid h-5/6 grid-cols-five gap-x-1 gap-y-4 overflow-y-scroll rounded border-custom-slate bg-images-container p-5 max-[1090px]:grid-cols-four  max-[910px]:grid-cols-three max-[715px]:grid-cols-two max-[505px]:grid-cols-one">
+        {ImagesData.map((image, index) => {
           return (
-            <div className="flex justify-center">
+            <div key={index} className="flex justify-center">
               <Card
                 name={image.name}
                 size={image.size}
                 date={image.date}
                 imageLink={image.imageLink}
-                bgColor={getRandomColor()}
+                bgColor={getColor(index)}
               />
             </div>
           );

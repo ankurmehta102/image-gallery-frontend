@@ -13,7 +13,7 @@ const Card = ({ name, size, date, imageLink, bgColor }: CardPropTypes) => {
   return (
     <div
       id="container"
-      className={`flex flex-col items-center justify-center ${bgColor} border border-black p-3 hover:brightness-105`}
+      className={`flex flex-col items-center justify-center ${bgColor} rounded border border-black p-3 hover:brightness-105`}
     >
       <ImageSection imageLink={imageLink} />
       <InfoSection name={name} size={size} date={date} />

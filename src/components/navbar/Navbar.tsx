@@ -5,7 +5,7 @@ import SearchBar from '../helpers/SearchBar';
 
 const Navbar = () => {
   return (
-    <nav className="flex h-12 w-full max-w-full justify-between bg-navbar">
+    <nav className="flex h-12 w-full max-w-full justify-between border-b border-line bg-black">
       <div
         id="logo-container"
         className="flex  w-1/12 items-center  justify-start p-2 text-3xl text-custom-slate max-[622px]:hidden"

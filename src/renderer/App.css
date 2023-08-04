@@ -13,6 +13,9 @@
   /* -webkit-tap-highlight-color: transparent; */
   /* background-color: black; */
 }
+body {
+  background-color: black;
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -21,6 +24,6 @@
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(38 38 38);
+  background-color: #413a3a;
   border-radius: 10px;
 }
