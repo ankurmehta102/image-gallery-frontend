@@ -46,3 +46,7 @@ export const enum WEIGHTS {
   MEDIUM = 'MEDIUM',
   HEAVY = 'HEAVY',
 }
+
+export enum USE_FETCH_VALUE {
+  IMAGES = 'IMAGES',
+}

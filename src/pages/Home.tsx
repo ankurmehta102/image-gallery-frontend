@@ -1,41 +1,13 @@
-import { useEffect, useState } from 'react';
 import Card from '../components/card/Card';
-import { getImages } from '../utils/http-common';
-import { isUserAndToken } from '../utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Loader from '../components/helpers/Loader';
-import { setLoading } from '../slices/generalSlice';
-import { useNavigate } from 'react-router-dom';
+import useFetchData from '../hooks/useFetchData';
+import { USE_FETCH_VALUE } from '../utils/constant';
 
 const Home = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { isLoading } = useSelector((state: RootState) => state.general);
-
-  const [imagesData, setImagesData] = useState<ImageInfo[]>([]);
-
-  const getAllImages = async () => {
-    try {
-      dispatch(setLoading(true));
-      const user = isUserAndToken();
-      if (!user) {
-        navigate('/login');
-        return;
-      }
-      const response = await getImages(user?.id);
-      const data = imagesDataAdapter(response.data);
-      setImagesData(data);
-    } catch (err) {
-      console.log('getAllimages--->', err);
-    } finally {
-      dispatch(setLoading(false));
-    }
-  };
-
-  useEffect(() => {
-    getAllImages();
-  }, []);
+  const { data: imagesData } = useFetchData(USE_FETCH_VALUE.IMAGES);
 
   return (
     <div
@@ -71,8 +43,6 @@ const Home = () => {
   );
 };
 
-export default Home;
-
 type ImageInfo = {
   name: string;
   size: string;
@@ -107,14 +77,4 @@ const getInitialGridColumns = (length: number) => {
   }
 };
 
-export const imagesDataAdapter = (data: any[]) => {
-  const formatedData = data.map((imageInfo) => {
-    return {
-      name: imageInfo.title,
-      size: imageInfo.size,
-      date: '8-11-23',
-      imageLink: imageInfo.path,
-    };
-  });
-  return formatedData;
-};
+export default Home;
