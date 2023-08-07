@@ -1,13 +1,13 @@
 export type SignUpField = {
   firstName: string;
   lastName: string;
-  userName: string;
+  email: string;
   password: string;
   confirmPassword: string;
 };
 
 export type LogInField = {
-  userName: string;
+  email: string;
   password: string;
 };
 

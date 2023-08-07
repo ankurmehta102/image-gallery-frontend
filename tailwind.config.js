@@ -36,6 +36,9 @@ module.exports = {
       borderWidth: {
         0.5: '0.5px',
       },
+      spacing: {
+        90: '90%',
+      },
       screens: {
         mobile: '367px',
         navbar: '622px',

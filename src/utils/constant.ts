@@ -3,7 +3,7 @@ import { InputFieldDataType } from './types';
 export const SignUpFieldsData: InputFieldDataType = [
   { name: 'firstName', type: 'text', placeholder: 'Firstname' },
   { name: 'lastName', type: 'text', placeholder: 'Lastname' },
-  { name: 'userName', type: 'text', placeholder: 'Username' },
+  { name: 'email', type: 'text', placeholder: 'email' },
   { name: 'password', type: 'password', placeholder: 'Password' },
   {
     name: 'confirmPassword',
@@ -13,18 +13,18 @@ export const SignUpFieldsData: InputFieldDataType = [
 ];
 
 export const LogInFieldsData: InputFieldDataType = [
-  { name: 'userName', type: 'text', placeholder: 'Username' },
+  { name: 'email', type: 'text', placeholder: 'email' },
   { name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 export const LogInFormDefaultValue = {
-  userName: '',
+  email: '',
   password: '',
 };
 export const SignUpFormDefaultValue = {
   firstName: '',
   lastName: '',
-  userName: '',
+  email: '',
   password: '',
   confirmPassword: '',
 };
