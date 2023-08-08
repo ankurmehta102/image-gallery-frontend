@@ -1,5 +1,10 @@
 import { STORAGE_KEYS } from './constant';
 
+const TIME_DIFFRENCE_FOR_IST_IN_MINUTES = 5 * 60 + 30;
+
+const TIME_DIFFRENCE_FOR_IST_IN_MILISECONDS =
+  TIME_DIFFRENCE_FOR_IST_IN_MINUTES * 60 * 1000;
+
 export const storeValue = (variableName: STORAGE_KEYS, value: string) => {
   localStorage.setItem(variableName, value);
 };
@@ -13,6 +18,10 @@ export const fetchStoredValue = (variableName: STORAGE_KEYS) => {
     return JSON.parse(value);
   }
   return value;
+};
+
+export const removeValue = (variableName: STORAGE_KEYS) => {
+  localStorage.removeItem(variableName);
 };
 
 export const sendMessageToMain = (message: string) => {
@@ -34,4 +43,16 @@ export const isUserAndToken = () => {
     return false;
   }
   return user;
+};
+
+export const formatDate = (utcDateStr: string): string => {
+  const utcTotalTimeInMilisecond = new Date(utcDateStr).getTime();
+  const istDate = new Date(
+    utcTotalTimeInMilisecond + TIME_DIFFRENCE_FOR_IST_IN_MILISECONDS
+  );
+  const day = istDate.getDate();
+  const month = istDate.getMonth() + 1;
+  const year = istDate.getFullYear();
+
+  return `${day}-${month}-${year}`;
 };

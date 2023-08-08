@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../slices/generalSlice';
-import { isUserAndToken } from '../utils/helpers';
+import { formatDate, isUserAndToken, removeValue } from '../utils/helpers';
 import { useNavigate } from 'react-router-dom';
 import { getImages } from '../utils/http-common';
-import { USE_FETCH_VALUE } from '../utils/constant';
+import { STORAGE_KEYS, USE_FETCH_VALUE } from '../utils/constant';
 
 const useFetchData = (type: USE_FETCH_VALUE) => {
   const navigate = useNavigate();
@@ -27,10 +27,16 @@ const useFetchData = (type: USE_FETCH_VALUE) => {
       setData(data);
     } catch (error: any) {
       console.log('getData--->', error);
-      const { message } = error?.response?.data || {
+      const { message, statusCode } = error?.response?.data || {
         message: error?.message || '',
+        statusCode: error?.status || '',
       };
       setErrMsg(message);
+      if (statusCode === 401) {
+        removeValue(STORAGE_KEYS.TOKENS);
+        removeValue(STORAGE_KEYS.USER);
+        navigate('/login');
+      }
     } finally {
       dispatch(setLoading(false));
     }
@@ -54,7 +60,7 @@ const imagesDataAdapter = (data: any[]) => {
     return {
       name: imageInfo.title,
       size: imageInfo.size,
-      date: '8-11-23',
+      date: formatDate(imageInfo.createdDate),
       imageLink: imageInfo.path,
     };
   });
