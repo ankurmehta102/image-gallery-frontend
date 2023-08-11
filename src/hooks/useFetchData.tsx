@@ -46,7 +46,7 @@ const useFetchData = (type: USE_FETCH_VALUE) => {
     getData();
   }, []);
 
-  return { data, errMsg };
+  return [data, errMsg] as const;
 };
 
 const getImagesData = async (userId: number) => {

@@ -7,7 +7,7 @@ import { USE_FETCH_VALUE } from '../utils/constant';
 
 const Home = () => {
   const { isLoading } = useSelector((state: RootState) => state.general);
-  const { data: imagesData } = useFetchData(USE_FETCH_VALUE.IMAGES);
+  const [imagesData] = useFetchData(USE_FETCH_VALUE.IMAGES);
 
   return (
     <div
