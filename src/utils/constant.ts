@@ -29,6 +29,13 @@ export const SignUpFormDefaultValue = {
   confirmPassword: '',
 };
 
+export const CardColors = [
+  'bg-card-one',
+  'bg-card-two',
+  'bg-card-three',
+  'bg-card-four',
+] as const;
+
 export const enum STORAGE_KEYS {
   USER = 'USER',
   TOKENS = 'TOKENS',

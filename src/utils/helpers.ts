@@ -1,4 +1,4 @@
-import { STORAGE_KEYS } from './constant';
+import { STORAGE_KEYS, CardColors } from './constant';
 
 const TIME_DIFFRENCE_FOR_IST_IN_MINUTES = 5 * 60 + 30;
 
@@ -55,4 +55,34 @@ export const formatDate = (utcDateStr: string): string => {
   const year = istDate.getFullYear();
 
   return `${day}-${month}-${year}`;
+};
+
+export const getInitialGridColumns = (length: number) => {
+  switch (length) {
+    case 4:
+      return 'grid-cols-four';
+    case 3:
+      return 'grid-cols-three';
+    case 2:
+      return 'grid-cols-two';
+    case 1:
+      return 'grid-cols-one';
+
+    default:
+      return 'grid-cols-five';
+  }
+};
+
+export const getColor = (index: number) => {
+  return CardColors[index % CardColors.length];
+};
+
+export const getErrMsgAndStatusCode = (
+  error: any
+): { message: string; statusCode: number } => {
+  const errData = error?.response?.data || {
+    message: error?.message || '',
+    statusCode: error?.status || '',
+  };
+  return errData;
 };

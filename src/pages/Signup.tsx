@@ -12,6 +12,8 @@ import ErrorMessage from '../components/helpers/ErrorMessage';
 import { useResetErrorMsg } from '../utils/reduxHelper';
 import FormPageLayout from '../components/form/FormPageLayout';
 import FormContainer from '../components/form/FormContainer';
+import { getErrMsgAndStatusCode } from '../utils/helpers';
+import { Routes } from '../routes';
 
 const Signup = () => {
   const { isLoading, errMsg } = useSelector(
@@ -27,14 +29,12 @@ const Signup = () => {
     try {
       dispatch(setLoading(true));
       await signUp(payload);
-      navigate('/login');
+      navigate(Routes.login);
       dispatch(setErrorMsg(''));
       return;
     } catch (error: any) {
       console.log('Signup[Err]-->', error);
-      const { message } = error?.response?.data || {
-        message: error?.message || '',
-      };
+      const { message } = getErrMsgAndStatusCode(error);
       dispatch(setErrorMsg(message));
     } finally {
       dispatch(setLoading(false));

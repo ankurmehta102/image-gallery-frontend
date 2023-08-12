@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from '../sidebar/Sidebar';
 import Navbar from 'components/navbar/Navbar';
+import { Routes } from '../../routes';
 
 const MainLayout = () => {
   const navigate = useNavigate();
   const handleNavigation = () => {
-    navigate('/login');
+    navigate(Routes.login);
   };
   useEffect(() => {
     window.addEventListener('navigate', handleNavigation);

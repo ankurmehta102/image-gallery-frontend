@@ -12,11 +12,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { logIn } from '../utils/http-common';
 import { setErrorMsg, setLoading } from '../slices/generalSlice';
-import { storeValue } from '../utils/helpers';
+import { getErrMsgAndStatusCode, storeValue } from '../utils/helpers';
 import ErrorMessage from '../components/helpers/ErrorMessage';
 import { useResetErrorMsg } from '../utils/reduxHelper';
 import FormPageLayout from '../components/form/FormPageLayout';
 import FormContainer from '../components/form/FormContainer';
+import { Routes } from '../routes';
 
 export const Login = () => {
   const { isLoading, errMsg } = useSelector(
@@ -35,13 +36,11 @@ export const Login = () => {
       storeValue(STORAGE_KEYS.USER, JSON.stringify(usersDetails));
       storeValue(STORAGE_KEYS.TOKENS, JSON.stringify(tokens));
       dispatch(setErrorMsg(''));
-      navigate('/');
+      navigate(Routes.home);
       return;
     } catch (error: any) {
       console.log('onSubmit[Err]-->', error);
-      const { message } = error?.response?.data || {
-        message: error?.message || '',
-      };
+      const { message } = getErrMsgAndStatusCode(error);
       dispatch(setErrorMsg(message));
     } finally {
       dispatch(setLoading(false));

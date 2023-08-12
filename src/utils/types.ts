@@ -6,11 +6,7 @@ export type SignUpField = {
   confirmPassword: string;
 };
 
-export type LogInField = {
-  email: string;
-  password: string;
-};
-
+export type LogInField = Pick<SignUpField, 'email' | 'password'>;
 export type SignUpFieldKeys = keyof SignUpField;
 export type logInFieldKeys = keyof LogInField;
 
@@ -19,3 +15,10 @@ export type InputFieldDataType = {
   type: string;
   placeholder: string;
 }[];
+
+export type ImageInfo = {
+  name: string;
+  size: string;
+  date: string;
+  imageLink: string;
+};

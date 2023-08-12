@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../slices/generalSlice';
-import { formatDate, isUserAndToken, removeValue } from '../utils/helpers';
+import {
+  formatDate,
+  getErrMsgAndStatusCode,
+  isUserAndToken,
+  removeValue,
+} from '../utils/helpers';
 import { useNavigate } from 'react-router-dom';
 import { getImages } from '../utils/http-common';
 import { STORAGE_KEYS, USE_FETCH_VALUE } from '../utils/constant';
+import { Routes } from '../routes';
 
 const useFetchData = (type: USE_FETCH_VALUE) => {
   const navigate = useNavigate();
@@ -18,7 +24,7 @@ const useFetchData = (type: USE_FETCH_VALUE) => {
       dispatch(setLoading(true));
       const user = isUserAndToken();
       if (!user) {
-        navigate('/login');
+        navigate(Routes.login);
         return;
       }
       if (type === USE_FETCH_VALUE.IMAGES) {
@@ -27,15 +33,12 @@ const useFetchData = (type: USE_FETCH_VALUE) => {
       setData(data);
     } catch (error: any) {
       console.log('getData--->', error);
-      const { message, statusCode } = error?.response?.data || {
-        message: error?.message || '',
-        statusCode: error?.status || '',
-      };
+      const { message, statusCode } = getErrMsgAndStatusCode(error);
       setErrMsg(message);
       if (statusCode === 401) {
         removeValue(STORAGE_KEYS.TOKENS);
         removeValue(STORAGE_KEYS.USER);
-        navigate('/login');
+        navigate(Routes.login);
       }
     } finally {
       dispatch(setLoading(false));
